@@ -1,0 +1,33 @@
+<header>
+  <h1>Colaboradores</h1>
+</header>
+<section class="main">
+  <app-area-check [img]='infoTemplateImg' (getData)='useData($event)'></app-area-check>
+  <section class="form">
+    <form [formGroup]='emailDataForm' ngSubmit='onSubmit()'>
+      <label for="day">Día de envío</label>
+      <input type="number" id="day" placeholder="Escribe día de envío" formControlName='day'>
+      <label for="asunto">Asunto</label>
+      <input type="text" id="asunto" placeholder="Escribe el asunto" formControlName='subject'>
+      <label for="parrafo">Párrafo</label>
+      <textarea name="parrafo" placeholder="Hola, buenos días......" formControlName='parragraph'></textarea>
+      <label for="info">Infografía</label>
+      <div (click)='click()'>
+        <input type="text" name="info" placeholder="Selecciona una infografía del portafolio" formControlName='postcard'>
+      </div>
+      <input id="enlace_checkbox" type="checkbox" [(ngModel)]='hasLink' [checked]=hasLink [ngModelOptions]="{standalone: true}">
+      <label for="enlace_checkbox">
+        <svg width="18" height="14" viewBox="0 0 18 14" fill-rule="evenodd">
+          <path d="M16.667 0L6 10.61 1.333 5.97 0 7.295l6 5.968 1.405-1.398L18 1.325"></path>
+        </svg>
+        Enlace
+      </label>
+      <div *ngIf=hasLink>
+        <label for="link">Link</label>
+        <input type="url" id="link" placeholder="Escribe el link para re-dirigir" formControlName='link'>
+      </div>
+      <input type="button" [disabled]="!emailDataForm.valid" (click)='ok()' value="Guardar">
+      <input type="button" class="btn-cancel" value="Cancelar">
+    </form>
+  </section>
+</section>
